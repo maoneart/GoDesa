@@ -1,0 +1,16 @@
+# Flutter
+flutter_godesa/.dart_tool/
+flutter_godesa/.flutter-plugins
+flutter_godesa/.flutter-plugins-dependencies
+flutter_godesa/.packages
+flutter_godesa/build/
+flutter_godesa/.idea/
+flutter_godesa/*.iml
+
+# SQLite Local & Uploads
+db/*.sqlite-journal
+uploads/godesa_*
+
+# OS & Logs
+*.log
+.DS_Store
