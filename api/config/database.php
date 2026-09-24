@@ -13,30 +13,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 date_default_timezone_set('Asia/Jakarta');
 
 // Konfigurasi MySQL Hosting maoneart.my.id
-$mysqlHost = 'localhost';
-$mysqlDb   = 'u9585642_godesa';
-$mysqlUser = 'u9585642_godesa';
-$mysqlPass = 'Godesa@2026!'; // Sesuaikan dengan kredensial cPanel hosting
+$mysqlHost = '127.0.0.1';
+$mysqlDb   = 'maonear1_godesa';
+$mysqlUser = 'maonear1_godesa';
+$mysqlPass = 'Godesa#MaoneArt2026!';
 
 // Fallback SQLite Lokal
 $sqlitePath = __DIR__ . '/../../db/desa.sqlite';
 
 $pdo = null;
 
-// Coba koneksi MySQL hosting terlebih dahulu jika bukan lokal termux
-$isHosting = (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'maoneart.my.id') !== false);
-
-if ($isHosting) {
-    try {
-        $dsn = "mysql:host={$mysqlHost};dbname={$mysqlDb};charset=utf8mb4";
-        $pdo = new PDO($dsn, $mysqlUser, $mysqlPass, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false
-        ]);
-    } catch (PDOException $e) {
-        // Fallback to SQLite if MySQL fails
-    }
+try {
+    $dsn = "mysql:host={$mysqlHost};dbname={$mysqlDb};charset=utf8mb4";
+    $pdo = new PDO($dsn, $mysqlUser, $mysqlPass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false
+    ]);
+} catch (PDOException $e) {
+    // Fallback to SQLite if MySQL fails
 }
 
 if (!$pdo) {
