@@ -34,12 +34,9 @@ jobs:
       - name: Generate Platform Files & Dependencies
         run: |
           cd flutter_godesa
+          cp android/app/src/main/AndroidManifest.xml /tmp/AndroidManifest.xml
           flutter create --platforms=android --org com.maoneart .
-          # Ensure INTERNET and network permissions exist in AndroidManifest.xml
-          if ! grep -q "android.permission.INTERNET" android/app/src/main/AndroidManifest.xml; then
-            sed -i '/<manifest/a \    <uses-permission android:name="android.permission.INTERNET"/>\n    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>\n    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>' android/app/src/main/AndroidManifest.xml
-          fi
-          sed -i 's/<application/<application android:usesCleartextTraffic="true"/g' android/app/src/main/AndroidManifest.xml || true
+          cp /tmp/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
           flutter pub get
 
       - name: Build Android Release APK
