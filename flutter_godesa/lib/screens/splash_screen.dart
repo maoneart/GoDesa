@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../config/app_theme.dart';
 import '../services/auth_service.dart';
 import 'home_screen.dart';
+import 'auth/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,9 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
     await AuthService().init();
     await Future.delayed(const Duration(milliseconds: 1400));
     if (mounted) {
+      final isLoggedIn = AuthService().isLoggedIn;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
+        MaterialPageRoute(
+          builder: (_) => isLoggedIn ? const HomeScreen() : const LoginScreen(),
+        ),
       );
     }
   }

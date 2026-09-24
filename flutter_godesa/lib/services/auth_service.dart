@@ -24,27 +24,7 @@ class AuthService extends ChangeNotifier {
       } catch (_) {}
     }
 
-    // Default Demo: Hermawan (Warga RT 003 / RW 001)
-    _currentUser = UserModel(
-      id: 53,
-      nik: '3216071405950001',
-      noKk: '32160701030001',
-      nama: 'Hermawan (Warga)',
-      tempatLahir: 'Bekasi',
-      tanggalLahir: '1995-05-14',
-      jenisKelamin: 'Laki-laki',
-      agama: 'Islam',
-      statusPerkawinan: 'Kawin',
-      pekerjaan: 'Karyawan Swasta / Desainer Grafis',
-      kewarganegaraan: 'WNI',
-      golonganDarah: 'O',
-      email: 'hermawan@gmail.com',
-      role: 'warga',
-      noHp: '089533377788',
-      alamat: 'Kp. Cibuntu RT 003 / RW 001, Desa Cibuntu',
-      rt: '003',
-      rw: '001',
-    );
+    _currentUser = null;
     notifyListeners();
   }
 

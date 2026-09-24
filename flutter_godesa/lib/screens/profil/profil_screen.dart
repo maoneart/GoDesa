@@ -4,6 +4,7 @@ import '../../config/app_theme.dart';
 import '../../config/api_config.dart';
 import '../../services/auth_service.dart';
 import '../../widgets/maoneart_modal.dart';
+import '../auth/login_screen.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});
@@ -230,6 +231,51 @@ class _ProfilScreenState extends State<ProfilScreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+
+            // Logout Button
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  MaoneArtModal.showConfirm(
+                    context: context,
+                    title: 'Keluar dari Akun',
+                    message: 'Apakah Anda yakin ingin keluar dari akun desa ini?',
+                    confirmText: 'Ya, Keluar',
+                    cancelText: 'Batal',
+                    isDanger: true,
+                    icon: Icons.logout_rounded,
+                    onConfirm: () async {
+                      await AuthService().logout();
+                      if (context.mounted) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (_) => const LoginScreen()),
+                          (route) => false,
+                        );
+                      }
+                    },
+                  );
+                },
+                icon: const Icon(Icons.logout_rounded, size: 18, color: AppTheme.gojekRed),
+                label: Text(
+                  'Keluar dari Akun',
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: AppTheme.gojekRed,
+                  ),
+                ),
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Color(0xFFFCA5A5)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  backgroundColor: const Color(0xFFFEF2F2),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
           ],
         ),
       ),

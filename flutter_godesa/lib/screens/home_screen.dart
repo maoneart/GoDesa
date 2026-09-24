@@ -8,6 +8,7 @@ import 'surat/surat_list_screen.dart';
 import 'surat/surat_create_screen.dart';
 import 'warga/warga_directory_screen.dart';
 import 'profil/profil_screen.dart';
+import 'auth/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -53,6 +54,28 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void _confirmLogout() {
+    MaoneArtModal.showConfirm(
+      context: context,
+      title: 'Keluar dari Akun',
+      message: 'Apakah Anda yakin ingin keluar dari sesi akun ini?',
+      confirmText: 'Ya, Keluar',
+      cancelText: 'Batal',
+      isDanger: true,
+      icon: Icons.logout_rounded,
+      onConfirm: () async {
+        await _auth.logout();
+        if (mounted) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginScreen()),
+            (route) => false,
+          );
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = _auth.currentUser;
@@ -94,31 +117,49 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              InkWell(
-                onTap: _showRoleSwitcher,
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: AppTheme.gojekLightGreen,
+              Row(
+                children: [
+                  InkWell(
+                    onTap: _showRoleSwitcher,
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: AppTheme.gojekGreen.withOpacity(0.3)),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.swap_horiz, size: 14, color: AppTheme.gojekGreen),
-                      const SizedBox(width: 4),
-                      Text(
-                        user?.roleDisplay ?? 'Warga',
-                        style: GoogleFonts.plusJakartaSans(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w800,
-                          color: AppTheme.gojekDarkGreen,
-                        ),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: AppTheme.gojekLightGreen,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: AppTheme.gojekGreen.withOpacity(0.3)),
                       ),
-                    ],
+                      child: Row(
+                        children: [
+                          const Icon(Icons.swap_horiz, size: 14, color: AppTheme.gojekGreen),
+                          const SizedBox(width: 4),
+                          Text(
+                            user?.roleDisplay ?? 'Warga',
+                            style: GoogleFonts.plusJakartaSans(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                              color: AppTheme.gojekDarkGreen,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 8),
+                  InkWell(
+                    onTap: _confirmLogout,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFEF2F2),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: const Color(0xFFFECACA)),
+                      ),
+                      child: const Icon(Icons.logout_rounded, size: 16, color: AppTheme.gojekRed),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
