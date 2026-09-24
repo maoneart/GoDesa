@@ -28,16 +28,16 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> login(String identifier, String password) async {
+  Future<Map<String, dynamic>> login(String identifier, String password) async {
     final res = await ApiService.login(identifier, password);
     if (res['success'] == true && res['user'] != null) {
       _currentUser = res['user'];
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('user_data', jsonEncode(_currentUser!.toJson()));
       notifyListeners();
-      return true;
+      return {'success': true};
     }
-    return false;
+    return {'success': false, 'message': res['message'] ?? 'Login gagal'};
   }
 
   Future<void> switchDemoRole(String role) async {

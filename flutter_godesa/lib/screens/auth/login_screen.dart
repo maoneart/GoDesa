@@ -74,11 +74,11 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _isLoading = true);
 
     try {
-      final success = await AuthService().login(nik, pass);
+      final res = await AuthService().login(nik, pass);
       if (!mounted) return;
       setState(() => _isLoading = false);
 
-      if (success) {
+      if (res['success'] == true) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (_) => const HomeScreen()),
@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
         MaoneArtModal.showAlert(
           context: context,
           title: 'Gagal Masuk',
-          message: 'NIK atau Password yang Anda masukkan salah. Pastikan data akun Anda sudah sesuai.',
+          message: res['message'] ?? 'NIK atau Password yang Anda masukkan salah. Pastikan data akun Anda sudah sesuai.',
           isDanger: true,
           icon: Icons.error_outline_rounded,
         );
