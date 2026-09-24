@@ -232,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         user?.nik ?? '3216071405950001',
-                        style: GoogleFonts.plusJakartaSans(
+                        style: TextStyle(
                           color: Colors.white.withOpacity(0.85),
                           fontSize: 11,
                           fontFamily: 'monospace',
@@ -712,7 +712,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
               _buildRoleOption('warga', 'Hermawan (Warga)', 'RT 003 / RW 001', Icons.person),
               _buildRoleOption('rt', 'Bpk. Sutisna (Ketua RT 003)', 'Pengantar RT 003 / RW 001', Icons.home_work),
-              _buildRoleOption('rw', 'Bpk. H. Warsito (Ketua RW 001)', 'Mengetahui Pengantar se-RW 001', Icons.sitemap),
+              _buildRoleOption('rw', 'Bpk. H. Warsito (Ketua RW 001)', 'Mengetahui Pengantar se-RW 001', Icons.account_tree_outlined),
               _buildRoleOption('sekdes', 'H. Muhammad Ridwan, S.AP', 'Sekretaris Desa (Sekdes)', Icons.admin_panel_settings),
               _buildRoleOption('staff', 'Rahmat Hidayat (Kasi Pelayanan)', 'Loket Verifikasi Desa', Icons.badge),
               _buildRoleOption('kades', 'H. Abdul Rohim, S.Sos', 'Kepala Desa Cibuntu (Approval & TTD)', Icons.how_to_reg),

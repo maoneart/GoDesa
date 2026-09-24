@@ -219,7 +219,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                       const SizedBox(height: 2),
                       Text(
                         ApiConfig.baseUrl,
-                        style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, fontFamily: 'monospace'),
+                        style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w700, fontFamily: 'monospace'),
                       ),
                     ],
                   ),

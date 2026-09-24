@@ -163,11 +163,11 @@ class _SuratDetailScreenState extends State<SuratDetailScreen> {
                   const SizedBox(height: 6),
                   Text(
                     'No. Registrasi: ${_surat.nomorSurat}',
-                    style: GoogleFonts.plusJakartaSans(
+                    style: const TextStyle(
                       fontSize: 12,
                       fontFamily: 'monospace',
                       fontWeight: FontWeight.w600,
-                      color: const Color(0xFF475569),
+                      color: Color(0xFF475569),
                     ),
                   ),
                 ],
@@ -234,7 +234,7 @@ class _SuratDetailScreenState extends State<SuratDetailScreen> {
             if (role == 'rw' && _surat.status == 'diverifikasi_rt')
               _buildActionButton(
                 label: 'Sahkan Mengetahui RW',
-                icon: Icons.sitemap,
+                icon: Icons.account_tree_outlined,
                 color: const Color(0xFF4F46E5),
                 onTap: () => _handleAction('verifikasi_rw'),
               ),

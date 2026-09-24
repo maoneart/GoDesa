@@ -248,11 +248,11 @@ class _WargaDirectoryScreenState extends State<WargaDirectoryScreen> {
                 const SizedBox(height: 4),
                 Text(
                   'NIK: ${c.nik}',
-                  style: GoogleFonts.plusJakartaSans(fontSize: 11, fontFamily: 'monospace', color: const Color(0xFF64748B)),
+                  style: const TextStyle(fontSize: 11, fontFamily: 'monospace', color: Color(0xFF64748B)),
                 ),
                 Text(
                   'No. KK: ${c.noKk ?? '-'}',
-                  style: GoogleFonts.plusJakartaSans(fontSize: 10, fontFamily: 'monospace', color: const Color(0xFF94A3B8)),
+                  style: const TextStyle(fontSize: 10, fontFamily: 'monospace', color: Color(0xFF94A3B8)),
                 ),
                 const SizedBox(height: 6),
                 Wrap(

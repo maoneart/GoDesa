@@ -187,10 +187,10 @@ class _SuratListScreenState extends State<SuratListScreen> {
                             ),
                             Text(
                               item.nomorSurat,
-                              style: GoogleFonts.plusJakartaSans(
+                              style: const TextStyle(
                                 fontSize: 11,
                                 fontFamily: 'monospace',
-                                color: const Color(0xFF64748B),
+                                color: Color(0xFF64748B),
                               ),
                             ),
                           ],
