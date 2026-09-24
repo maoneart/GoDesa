@@ -143,7 +143,12 @@ class MaoneArtModal {
     required String message,
     String buttonText = 'Mengerti',
     bool isSuccess = true,
+    bool isDanger = false,
+    IconData? icon,
   }) {
+    final effectiveSuccess = !isDanger && isSuccess;
+    final effectiveIcon = icon ?? (effectiveSuccess ? Icons.check_circle_outline : Icons.error_outline);
+
     showDialog(
       context: context,
       builder: (ctx) {
@@ -171,13 +176,13 @@ class MaoneArtModal {
                   width: 54,
                   height: 54,
                   decoration: BoxDecoration(
-                    color: isSuccess ? AppTheme.gojekLightGreen : const Color(0xFFFEE2E2),
+                    color: effectiveSuccess ? AppTheme.gojekLightGreen : const Color(0xFFFEE2E2),
                     borderRadius: BorderRadius.circular(18),
                   ),
                   child: Icon(
-                    isSuccess ? Icons.check_circle_outline : Icons.error_outline,
+                    effectiveIcon,
                     size: 28,
-                    color: isSuccess ? AppTheme.gojekGreen : AppTheme.gojekRed,
+                    color: effectiveSuccess ? AppTheme.gojekGreen : AppTheme.gojekRed,
                   ),
                 ),
                 const SizedBox(height: 16),
